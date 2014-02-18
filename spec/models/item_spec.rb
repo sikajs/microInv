@@ -8,8 +8,8 @@ describe Item do
                       brand: "S&C",
                       unit_cost: 10.25, 
                       unit_price: 31.00,
-                      barcode: "140001523", 
-                      color: "523", 
+                      barcode: "149900999", 
+                      color: "999", 
                       active: true, 
                       initial_stock: 10,
                       category: "Yarn" ) 

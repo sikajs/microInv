@@ -41,6 +41,7 @@ end
 group :test do
   gem 'capybara'
   #gem 'libnotify'  #only apply on Linux for guard gem
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 group :development, :test do
