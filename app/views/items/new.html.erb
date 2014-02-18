@@ -1,4 +1,4 @@
-<div id="newItemForm" class="container">
+<div id="newItemForm" class="col-xs-6 col-md-4">
 <h1>New Item</h1>
 <%= form_for :item do |f| %>
   <p>
@@ -38,7 +38,7 @@
     <%= f.text_field :barcode %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit class:"btn btn-primary"%>
   </p>
 <% end %>
 </div>
