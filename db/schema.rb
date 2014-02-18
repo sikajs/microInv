@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140218055930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,22 +66,22 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "items", primary_key: "item_id", force: true do |t|
-    t.string   "item_name",          limit: 1000,                   null: false
-    t.string   "item_name_en",       limit: 1000
+    t.string   "item_name",         limit: 1000,                   null: false
+    t.string   "item_name_en",      limit: 1000
     t.integer  "stock"
-    t.integer  "supplier_id",        limit: 8
-    t.string   "brand",              limit: 30
+    t.integer  "supplier_id",       limit: 8
+    t.string   "brand",             limit: 30
     t.decimal  "unit_cost"
     t.decimal  "unit_price"
-    t.string   "product_code",       limit: 30
-    t.string   "barcode",            limit: 20
-    t.string   "color",              limit: 20
-    t.datetime "last_detail_update",              default: "now()", null: false
-    t.datetime "last_restock_date",               default: "now()"
-    t.boolean  "active",                          default: true,    null: false
-    t.datetime "initial_time",                    default: "now()", null: false
-    t.decimal  "initial_stock",                   default: 0.0
-    t.string   "category",           limit: 50
+    t.string   "product_code",      limit: 30
+    t.string   "barcode",           limit: 20
+    t.string   "color",             limit: 20
+    t.datetime "updated_at",                     default: "now()", null: false
+    t.datetime "last_restock_date",              default: "now()"
+    t.boolean  "active",                         default: true,    null: false
+    t.datetime "created_at",                     default: "now()", null: false
+    t.decimal  "initial_stock",                  default: 0.0
+    t.string   "category",          limit: 50
   end
 
   add_index "items", ["barcode"], name: "barcode_uniq", unique: true, using: :btree

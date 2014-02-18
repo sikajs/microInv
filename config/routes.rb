@@ -1,4 +1,7 @@
 SmeInv::Application.routes.draw do
+  resource :items
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
