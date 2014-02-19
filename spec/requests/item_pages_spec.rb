@@ -4,6 +4,23 @@ describe "Item Pages" do
   
   subject { page }
   
+  describe "Item index page" do
+    before do
+      FactoryGirl.create(:item, item_name: "product1", stock: 5, barcode: "149999000")
+      FactoryGirl.create(:item, item_name: "product2", stock: 5, barcode: "149999001")
+      visit items_path
+    end
+    
+    it { should have_content('Item list') }
+    
+    it "should list each item" do
+      # have order command because we want to force it toorder by id 
+      Item.paginate(page: 1).order('item_id ASC').each do |item|
+        expect(page).to have_selector("td", text: item.item_name)
+      end
+    end
+  end
+  
   describe "Item detail page" do
     let(:item) { FactoryGirl.create(:item) }
     before { visit item_path(item) }
@@ -47,6 +64,5 @@ describe "Item Pages" do
       	expect { click_button submit }.to change(Item, :count).by(1)
       end
     end
-    
   end
 end

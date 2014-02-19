@@ -19,6 +19,8 @@ class ItemsController < ApplicationController
   end
   
   def index
+    # this will break the test if using :per_page smaller than 30 in here
+    @items = Item.paginate(:page => params[:page]).order('item_id ASC')
   end
   
   private

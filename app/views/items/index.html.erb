@@ -1,1 +1,20 @@
-I am items#index
+<div class="">
+<h1>Item list</h1>
+  <div class="table-responsive">
+  
+  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
+    <table class="table">
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.item_id%></td>
+        <td><%= item.item_name%></td>
+        <td><%= item.item_name_en%></td>
+        <td><%= item.barcode%></td>
+        <td><%= item.stock%></td>
+      </tr>
+      <% end %>
+    </table>
+  <%= will_paginate %>
+  
+  </div>
+</div>
