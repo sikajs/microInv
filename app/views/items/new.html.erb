@@ -1,9 +1,10 @@
-<div id="newItemForm" class="col-xs-6 col-md-4">
+<div id="newItemForm" class="col-xs-12 col-md-8">
 <h1>Add New Item</h1>
-<%= form_for( @item ) do |f| %>
+<%= form_for(@item) do |f| %>
+  <%= render 'shared/error_messages' %>
   <p>
     <%= f.label :item_name %>
-    <%= f.text_field :item_name %>
+    <%= f.text_field :item_name  %>
   </p>
   <p>
     <%= f.label :item_english_name %>
@@ -21,8 +22,8 @@
     <%= f.text_field :unit_price %>
   </p>
   <p>
-    <%= f.label :initial_stock %>
-    <%= f.text_field :initial_stock %>
+    <%= f.label :stock %>
+    <%= f.text_field :stock %>
   </p>
   <p>
     <%= f.label :color %>

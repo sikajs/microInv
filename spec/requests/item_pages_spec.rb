@@ -16,29 +16,34 @@ describe "Item Pages" do
     it { should have_content(item.stock) }
     it { should have_content(item.unit_cost) }
     it { should have_content(item.unit_price) }
+    it { should have_link('Back to list', href: items_path) }
   end
   
-  describe "Add new item page" do
+  describe "Add new item" do
     before { visit new_item_path }
     
     it { should have_content('Add New Item') }
-    it { should have_content('Item name') }
     
     let(:submit) { "Create Item" }
     
     describe "with invalid item information" do
       it "should not create an item" do
-      	pending "not implement yet"
       	expect { click_button submit }.not_to change(Item, :count)
       end
     end
     
     describe "with valid item information" do
       before do
+      	fill_in "Item name",	with:"Test product"
+      	fill_in "Unit cost",	with:"10"
+      	fill_in "Unit price",	with:"20"
+      	fill_in "Stock",	with:"10"
+      	fill_in "Color",	with:"999"
+      	fill_in "Brand",	with:"S&C"
+      	fill_in "Barcode",	with:"149900999"
       end
       
       it "should create an item" do
-      	pending "not implement yet"
       	expect { click_button submit }.to change(Item, :count).by(1)
       end
     end
