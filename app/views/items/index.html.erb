@@ -1,23 +1,24 @@
-<div class="">
+<div>
 <h1>Item list</h1>
+<%= link_to "Add new item", new_item_path %>
   <div class="table-responsive">
-  <%= link_to "Add new item", new_item_path, class: "btn btn-link" %>
-  
   <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
     <table class="table">
-    
+      <tr>
+        <th>ID</th><th>Item name</th><th>English name</th><th>Barcode</th>
+        <th>Stock</th><th>Action</th>
+      </tr>
       <% @items.each do |item| %>
       <tr>
         <td><%= item.item_id%></td>
         <td><%= item.item_name%></td>
         <td><%= item.item_name_en%></td>
-        <td><%= item.barcode%></td>
+        <td><%= link_to item.barcode, item_path(item) %></td>
         <td><%= item.stock%></td>
         <td><%= link_to "Edit", edit_item_path(item) %></td>
       </tr>
       <% end %>
     </table>
-  <%= will_paginate %>
-  
+  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
   </div>
 </div>
