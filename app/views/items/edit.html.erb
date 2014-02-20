@@ -38,7 +38,8 @@
     <%= f.text_field :barcode %>
   </p>
   <p>
-    <%= f.submit "Save changes", class:"btn btn-primary"%>
+    <%= f.submit "Save changes", class:"btn btn-primary", data: { confirm: "Are you sure?" }%>
+    <%= link_to "Cancel", items_path, class: "btn btn-warning"%>
   </p>
 <% end %>
 </div>

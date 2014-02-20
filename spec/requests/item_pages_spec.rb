@@ -4,7 +4,7 @@ describe "Item Pages" do
   
   subject { page }
   
-  describe "Item index page" do
+  describe "in Index page" do
     before do
       FactoryGirl.create(:item, item_name: "product1", stock: 5, barcode: "149999000")
       FactoryGirl.create(:item, item_name: "product2", stock: 5, barcode: "149999001")
@@ -12,6 +12,10 @@ describe "Item Pages" do
     end
     
     it { should have_content('Item list') }
+    it { should have_link('Add new item') }
+    it "has the filter/search field to change the showing result of the list" do
+      pending "not implement yet"
+    end
     
     it "should list each item" do
       # have order command because we want to force it toorder by id 
@@ -75,6 +79,8 @@ describe "Item Pages" do
     
     describe "page" do
       it { should have_content('Edit item') }
+      it { should have_button('Save changes') }
+      it { should have_link('Cancel') }
     end
     
     describe "with invalid information" do
@@ -100,5 +106,9 @@ describe "Item Pages" do
       it { should have_selector('div.bg-success') }
       specify { expect(item.reload.item_name).to eq new_name }
     end
+  end
+  
+  describe "Deactivate item" do
+    pending "will not delete, just deactivate"
   end
 end
