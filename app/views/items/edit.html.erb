@@ -1,0 +1,44 @@
+<div id="editItemForm" class="col-xs-12 col-md-8">
+<h1>Edit item</h1>
+<%= form_for(@item) do |f| %>
+  <%= render 'shared/error_messages' %>
+  <p>
+    <%= f.label :item_name %>
+    <%= f.text_field :item_name  %>
+  </p>
+  <p>
+    <%= f.label :item_english_name %>
+    <%= f.text_field :item_name_en %>
+  </p>
+  <p>
+    <%= f.label :supplier %>
+  </p>
+  <p>
+    <%= f.label :unit_cost %>
+    <%= f.text_field :unit_cost %>
+  </p>
+  <p>
+    <%= f.label :unit_price %>
+    <%= f.text_field :unit_price %>
+  </p>
+  <p>
+    <%= f.label :stock %>
+    <%= f.text_field :stock %>
+  </p>
+  <p>
+    <%= f.label :color %>
+    <%= f.text_field :color %>
+  </p>
+  <p>
+    <%= f.label :brand %>
+    <%= f.text_field :brand %>
+  </p>
+  <p>
+    <%= f.label :barcode %>
+    <%= f.text_field :barcode %>
+  </p>
+  <p>
+    <%= f.submit "Save changes", class:"btn btn-primary"%>
+  </p>
+<% end %>
+</div>

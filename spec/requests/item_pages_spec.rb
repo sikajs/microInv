@@ -17,6 +17,7 @@ describe "Item Pages" do
       # have order command because we want to force it toorder by id 
       Item.paginate(page: 1).order('item_id ASC').each do |item|
         expect(page).to have_selector("td", text: item.item_name)
+        expect(page).to have_link('Edit')
       end
     end
   end
@@ -63,6 +64,41 @@ describe "Item Pages" do
       it "should create an item" do
       	expect { click_button submit }.to change(Item, :count).by(1)
       end
+    end
+  end
+  
+  describe "Edit item" do
+    let(:item) { FactoryGirl.create(:item) }
+    before do
+      visit edit_item_path(item)
+    end
+    
+    describe "page" do
+      it { should have_content('Edit item') }
+    end
+    
+    describe "with invalid information" do
+      let(:new_name) { " " }
+      before do
+      	fill_in "Item name",	with: new_name
+      	click_button "Save changes"
+      end
+      
+      it "displays the error message" do
+      	 #pending "Don't know why it's wrong"
+      	 should have_selector('div.bg-danger')
+      end
+    end
+    
+    describe "with valid information" do
+      let(:new_name) { "New name" }
+      before do
+      	fill_in "Item name",	with: new_name
+      	click_button "Save changes"
+      end
+      
+      it { should have_selector('div.bg-success') }
+      specify { expect(item.reload.item_name).to eq new_name }
     end
   end
 end
