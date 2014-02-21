@@ -29,17 +29,17 @@ describe Item do
   it { should respond_to(:active) }
   it { should respond_to(:category) }
 
-  describe "When name is not present" do
+  describe "When name is blank" do
     before { @item.item_name = " " }
     it { should_not be_valid }
   end
   
-  describe "When barcode is not present" do
+  describe "When barcode is blank" do
     before { @item.barcode = " " }
     it { should_not be_valid }
   end
   
-  describe "When stock is not present" do
+  describe "When stock is blank" do
     before { @item.stock = " " }
     it { should_not be_valid }
   end

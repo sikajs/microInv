@@ -1,0 +1,39 @@
+<div id="newSupplierForm" class="col-xs-12 col-md-8">
+<h1>Add new supplier</h1>
+<%= form_for(@supplier) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <p>
+    <%= f.label :suppl_name %>
+    <%= f.text_field :suppl_name  %>
+  </p>
+  <p>
+    <%= f.label :business_num %>
+    <%= f.text_field :business_num %>
+  </p>
+  <p>
+    <%= f.label :suppl_tel %>
+    <%= f.text_field :suppl_tel %>
+  </p>
+  <p>
+    <%= f.label :suppl_fax %>
+    <%= f.text_field :suppl_fax %>
+  </p>
+  <p>
+    <%= f.label :suppl_mobile %>
+    <%= f.text_field :suppl_mobile %>
+  </p>
+  <p>
+    <%= f.label :suppl_email %>
+    <%= f.text_field :suppl_email %>
+  </p>
+  <p>
+    <%= f.label :suppl_address %>
+    <%= f.text_field :suppl_address %>
+  </p>
+
+  <p>
+    <%= f.submit "Create", class:"btn btn-primary" %>
+    <%= link_to "Cancel", suppliers_path, class: "btn btn-warning"%>
+  </p>
+<% end %>
+</div>

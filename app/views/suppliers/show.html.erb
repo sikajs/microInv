@@ -1,0 +1,16 @@
+<div id="supplierDetail" class="col-xs-12 col-md-8">
+  
+<h1>Supplier <%= @supplier.supplier_id %></h1>
+<ul>
+<li>Supplier name: <%= @supplier.suppl_name %></li>
+<li>Business number: <%= @supplier.business_num %></li>
+<li>Supplier tel: <%= @supplier.suppl_tel %></li>
+<li>Supplier fax: <%= @supplier.suppl_fax %></li>
+<li>Supplier mobile: <%= @supplier.suppl_mobile %></li>
+<li>Supplier email: <%= @supplier.suppl_email %></li>
+<li>Supplier address: <%= @supplier.suppl_address %></li>
+<li>Created at: <%= @supplier.created_at %></li>
+<li>Updated at: <%= @supplier.updated_at %></li>
+</ul>
+<%= link_to "Back to list", suppliers_path, class: "btn btn-warning" %>
+</div>

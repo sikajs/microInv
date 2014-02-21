@@ -12,4 +12,14 @@ FactoryGirl.define do
     initial_stock 10
     category "Yarn"
   end
+  
+  factory :supplier do
+    suppl_name "Test supplier"
+    business_num "789"
+    suppl_tel "021234567"
+    suppl_fax "027654321"
+    suppl_mobile "0903335678"
+    suppl_email "test@example.com"
+    suppl_address "102-104 haha road, Nong Khae, Saraburi"
+  end
 end

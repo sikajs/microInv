@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218055930) do
+ActiveRecord::Schema.define(version: 20140221054321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,13 +153,15 @@ ActiveRecord::Schema.define(version: 20140218055930) do
   add_index "sme_access", ["username"], name: "sme_access_username_key", unique: true, using: :btree
 
   create_table "suppliers", primary_key: "supplier_id", force: true do |t|
-    t.string "suppl_name",    limit: 500
-    t.string "business_num",  limit: 30
-    t.string "suppl_tel",     limit: 12
-    t.string "suppl_fax",     limit: 12
-    t.string "suppl_mobile",  limit: 10
-    t.string "suppl_email",   limit: 100
-    t.string "suppl_address", limit: 200
+    t.string   "suppl_name",    limit: 500
+    t.string   "business_num",  limit: 30
+    t.string   "suppl_tel",     limit: 12
+    t.string   "suppl_fax",     limit: 12
+    t.string   "suppl_mobile",  limit: 10
+    t.string   "suppl_email",   limit: 100
+    t.string   "suppl_address", limit: 200
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "suppliers", ["business_num"], name: "businessno_unique", unique: true, using: :btree

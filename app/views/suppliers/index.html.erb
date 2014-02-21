@@ -1,0 +1,23 @@
+<div class="col-xs-12 col-md-8">
+<h1>Supplier list</h1>
+<%= link_to "Add new supplier", new_supplier_path %>
+  <div class="table-responsive">
+  <%= will_paginate @suppliers, renderer: BootstrapPagination::Rails%>
+    <table class="table">
+      <tr>
+        <th>Supplier ID</th><th>Supplier name</th><th>Tel</th><th>Fax</th>
+        <th>Action</th>
+      </tr>
+      <% @suppliers.each do |supplier| %>
+      <tr>
+        <td><%= supplier.supplier_id%></td>
+        <td><%= link_to supplier.suppl_name, supplier_path(supplier)%></td>
+        <td><%= supplier.suppl_tel%></td>
+        <td><%= supplier.suppl_fax%></td>
+        <td><%= link_to "Edit", edit_supplier_path(supplier) %></td>
+      </tr>
+      <% end %>
+    </table>
+  <%= will_paginate @suppliers, renderer: BootstrapPagination::Rails%>
+  </div>
+</div>
