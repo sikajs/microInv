@@ -14,7 +14,10 @@
         <td><%= link_to supplier.suppl_name, supplier_path(supplier)%></td>
         <td><%= supplier.suppl_tel%></td>
         <td><%= supplier.suppl_fax%></td>
-        <td><%= link_to "Edit", edit_supplier_path(supplier) %></td>
+        <td>
+          <%= link_to "Edit", edit_supplier_path(supplier), class: "btn btn-warning" %>
+          <%= link_to "Delete", supplier, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger"%>
+        </td>
       </tr>
       <% end %>
     </table>

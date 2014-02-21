@@ -35,6 +35,12 @@ class SuppliersController < ApplicationController
     end
   end
   
+  def destroy
+    Supplier.find(params[:id]).destroy
+    flash[:success] = "Supplier successfully deleted!"
+    redirect_to suppliers_path
+  end
+  
   private
     def supplier_params
       params.require(:supplier).permit(:suppl_name, :business_num, 

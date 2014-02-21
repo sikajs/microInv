@@ -103,4 +103,18 @@ describe "Supplier Pages" do
       specify { expect(supplier.reload.suppl_name).to eq new_name }
     end
   end
+  
+  describe "delete supplier" do
+    let(:supplier) { FactoryGirl.create(:supplier) }
+    before do
+      visit suppliers_path
+    end
+    
+    it { should have_link('Delete', href: supplier_path(Supplier.first)) }
+    it "should be able to delete one supplier once" do
+      expect do
+        click_link('Delete', match: :first)
+      end.to change(Supplier, :count).by(-1)
+    end
+  end
 end
