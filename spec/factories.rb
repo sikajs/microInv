@@ -22,4 +22,13 @@ FactoryGirl.define do
     suppl_email "test@example.com"
     suppl_address "102-104 haha road, Nong Khae, Saraburi"
   end
+  
+  factory :customer do
+    cust_name "Test customer"
+    cust_tel "021234567"
+    cust_fax "027654321"
+    cust_mobile "0903335678"
+    cust_email "test@example.com"
+    cust_address "102-104 haha road, Nong Khae, Saraburi"
+  end
 end

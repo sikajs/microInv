@@ -1,8 +1,14 @@
 SmeInv::Application.routes.draw do
+  get "customers/new"
+  get "customers/create"
+  get "customers/index"
+  get "customers/edit"
+  get "customers/update"
   resources :items
   resources :suppliers
+  resources :customers
  
-  root "suppliers#index"
+  root "customers#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

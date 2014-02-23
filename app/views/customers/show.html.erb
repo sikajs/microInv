@@ -1,0 +1,14 @@
+<div id="customerDetail" class="col-xs-12 col-md-8">
+  
+<h1>Customer Detail<%= @customer.customer_id %></h1>
+<ul>
+<li>Customer name: <%= @customer.cust_name %></li>
+<li>Customer tel: <%= @customer.cust_tel %></li>
+<li>Customer fax: <%= @customer.cust_fax %></li>
+<li>Customer mobile: <%= @customer.cust_mobile %></li>
+<li>Customer email: <%= @customer.cust_email %></li>
+<li>Customer address: <%= @customer.cust_address %></li>
+
+</ul>
+<%= link_to "Back to list", customers_path, class: "btn btn-warning" %>
+</div>
