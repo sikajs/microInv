@@ -12,6 +12,7 @@
   </p>
   <p>
     <%= f.label :supplier %>
+    <%= collection_select(:item, :supplier_id, Supplier.all.sort, :supplier_id, :suppl_name) %>
   </p>
   <p>
     <%= f.label :unit_cost %>

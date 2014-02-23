@@ -11,7 +11,8 @@
     <%= f.text_field :item_name_en %>
   </p>
   <p>
-    <%= f.label :supplier %>
+    <%= f.label :supplier_id %>
+    <%= @item.supplier_id %>
   </p>
   <p>
     <%= f.label :unit_cost %>
@@ -23,7 +24,7 @@
   </p>
   <p>
     <%= f.label :stock %>
-    <%= f.text_field :stock %>
+    <%= @item.stock %>
   </p>
   <p>
     <%= f.label :color %>
@@ -35,7 +36,7 @@
   </p>
   <p>
     <%= f.label :barcode %>
-    <%= f.text_field :barcode %>
+    <%= @item.barcode %>
   </p>
   <p>
     <%= f.submit "Save changes", class:"btn btn-primary", data: { confirm: "Are you sure?" }%>
