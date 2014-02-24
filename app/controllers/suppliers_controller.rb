@@ -18,7 +18,7 @@ class SuppliersController < ApplicationController
   end
 
   def index
-    @suppliers = Supplier.paginate(:page => params[:page]).order('supplier_id ASC')
+    @suppliers = Supplier.paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
   end
   
   def edit

@@ -13,6 +13,8 @@ describe "Supplier Pages" do
     
     it { should have_content('Supplier list') }
     it { should have_link('Add new supplier') }
+    it { should have_link('Supplier ID') }
+    it { should have_link('Supplier name') }
     it "has the filter/search field to change the showing result of the list" do
       pending "not implement yet"
     end

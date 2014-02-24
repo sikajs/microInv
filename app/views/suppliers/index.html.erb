@@ -1,11 +1,14 @@
 <div class="col-xs-12 col-md-8">
 <h1>Supplier list</h1>
-<%= link_to "Add new supplier", new_supplier_path %>
+<p><%= link_to "Add new supplier", new_supplier_path, class: "btn btn-info" %>
+Total <%= pluralize @suppliers.count, "supplier" %> </p>
   <div class="table-responsive">
   <%= will_paginate @suppliers, renderer: BootstrapPagination::Rails%>
     <table class="table">
       <tr>
-        <th>Supplier ID</th><th>Supplier name</th><th>Tel</th><th>Fax</th>
+        <th><%= link_to sortable "supplier_id", "Supplier ID" %></th>
+        <th><%= link_to sortable "suppl_name", "Supplier name" %></th>
+        <th>Tel</th><th>Fax</th>
         <th>Action</th>
       </tr>
       <% @suppliers.each do |supplier| %>

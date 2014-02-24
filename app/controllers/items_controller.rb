@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-  helper_method :sort_column, :sort_direction	
-	
   def show
     @item = Item.find(params[:id])
   end
@@ -62,13 +60,5 @@ class ItemsController < ApplicationController
       	                           :unit_cost, :unit_price,
       	                           :stock, :color,
       	                           :brand, :barcode)
-    end
-    
-    def sort_column
-      Item.column_names.include?(params[:sort]) ? params[:sort] : "item_id"
-    end
-    
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

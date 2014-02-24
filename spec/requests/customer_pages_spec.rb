@@ -13,6 +13,8 @@ describe "Customer Pages" do
     
     it { should have_content('Customer list') }
     it { should have_link('Add new customer') }
+    it { should have_link('Customer ID') }
+    it { should have_link('Customer name') }
     it "has the filter/search field to change the showing result of the list" do
       pending "not implement yet"
     end

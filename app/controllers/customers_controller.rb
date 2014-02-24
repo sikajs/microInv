@@ -18,7 +18,7 @@ class CustomersController < ApplicationController
   end
   
   def index
-    @customers = Customer.paginate(:page => params[:page]).order('customer_id ASC')
+    @customers = Customer.paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
   end
 
   def edit
