@@ -13,14 +13,18 @@ describe "Item Pages" do
     
     it { should have_content('Item list') }
     it { should have_link('Add new item') }
+    it { should have_link('ID') }
+    it { should have_link('Item name') }
+    it { should have_link('English name') }
+    it { should have_link('Barcode') }
     it "has the filter/search field to change the showing result of the list" do
       pending "not implement yet"
     end
     
     it "should list each item" do
-      # have order command because we want to force it toorder by id 
-      Item.paginate(page: 1).order('item_id ASC').each do |item|
-        expect(page).to have_selector("td", text: item.item_name)
+      # have order command because we want to force it to order by id 
+      Item.paginate(page: 1).order(:item_id).each do |item|
+        expect(page).to have_selector("td", text: item.item_id)
         expect(page).to have_link('Edit')
         #need to refactor
         expect(page).to have_link('Deactivate')
