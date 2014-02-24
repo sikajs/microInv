@@ -22,6 +22,8 @@ describe "Item Pages" do
       Item.paginate(page: 1).order('item_id ASC').each do |item|
         expect(page).to have_selector("td", text: item.item_name)
         expect(page).to have_link('Edit')
+        #need to refactor
+        expect(page).to have_link('Deactivate')
       end
     end
   end
@@ -108,7 +110,5 @@ describe "Item Pages" do
     end
   end
   
-  describe "Deactivate item" do
-    pending "will not delete, just deactivate"
-  end
+  
 end

@@ -38,6 +38,22 @@ class ItemsController < ApplicationController
     end
   end
   
+  def activate
+    @item = Item.find(params[:item_id])
+    if @item.update_attribute(:active, TRUE)
+      flash[:success] = "Item activated!"
+      redirect_to @item
+    end
+  end
+  
+  def deactivate
+    @item = Item.find(params[:item_id])
+    if @item.update_attribute(:active, FALSE)
+      flash[:success] = "Item deactivated!"
+      redirect_to @item
+    end
+  end
+  
   private
     def item_params
       params.require(:item).permit(:item_name, :item_name_en, :supplier_id,

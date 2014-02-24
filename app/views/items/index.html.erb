@@ -6,16 +6,24 @@
     <table class="table">
       <tr>
         <th>ID</th><th>Item name</th><th>English name</th><th>Barcode</th>
-        <th>Stock</th><th>Action</th>
+        <th>Stock</th><th>Status</th><th>Action</th>
       </tr>
       <% @items.each do |item| %>
       <tr>
-        <td><%= item.item_id%></td>
-        <td><%= item.item_name%></td>
-        <td><%= item.item_name_en%></td>
+        <td><%= item.item_id %></td>
+        <td><%= item.item_name %></td>
+        <td><%= item.item_name_en %></td>
         <td><%= link_to item.barcode, item_path(item) %></td>
-        <td><%= item.stock%></td>
-        <td><%= link_to "Edit", edit_item_path(item) %></td>
+        <td><%= item.stock %></td>
+        <td><%= item.active %></td>
+        <td>
+          <%= link_to "Edit", edit_item_path(item) %>
+          <% if item.active %>
+          <%=  link_to "Deactivate", item_deactivate_path(item), method: :patch, data: { confirm: "Sure?" } %>
+          <% else %>
+          <%=  link_to "Activate", item_activate_path(item), method: :patch, data: { confirm: "Sure?" } %>
+          <% end %>
+        </td>
       </tr>
       <% end %>
     </table>
