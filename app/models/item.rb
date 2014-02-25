@@ -10,4 +10,6 @@ class Item < ActiveRecord::Base
                       uniqueness: true
   
   belongs_to :supplier
+  has_many :orderitems
+  has_many :orders, :through => :orderitems
 end
