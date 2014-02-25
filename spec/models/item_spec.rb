@@ -61,7 +61,7 @@ describe Item do
   
   describe "when barcode is in correct format" do
     it "should be valid" do
-      barcode = %w[123456789 140014567 020032000]
+      barcode = %w[123456789 140099567 020032900]
       barcode.each do |valid_barcode|
         @item.barcode = valid_barcode
         expect(@item).to be_valid
@@ -70,8 +70,12 @@ describe Item do
   end
   
   describe "when barcode is already taken" do
-    it "should be invalid" do
-      pending "strang situation keeps appearing"
+    before do
+      #pending "strang situation keeps appearing"
+      item_with_same_barcode = @item.dup
+      item_with_same_barcode.save
     end
+    
+    it { should be_invalid }
   end
 end
