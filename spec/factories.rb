@@ -31,4 +31,9 @@ FactoryGirl.define do
     cust_email "test@example.com"
     cust_address "102-104 haha road, Nong Khae, Saraburi"
   end
+  
+  factory :order do
+    cash_received 100
+    change 0
+  end
 end

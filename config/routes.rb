@@ -1,18 +1,17 @@
 SmeInv::Application.routes.draw do
-  get "orders/new"
-  get "orders/create"
-  get "orders/show"
-  get "orders/index"
-  get "orders/edit"
-  get "orders/update"
   resources :items do
+    collection do
+      get 'getByBarcode'
+    end
+
     patch 'activate'
     patch 'deactivate'
   end
   resources :suppliers
   resources :customers
- 
-  root "orders#index"
+  resources :orders 
+
+  root "orders#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

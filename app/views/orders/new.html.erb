@@ -1,2 +1,60 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<div class="col-xs-12 col-md-8">
+<h1>New Order</h1>
+<%= form_for(@order) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <p>
+    Order date: <%= Date.today %><br/>
+    Customer No.: <%= f.text_field :customer_id, :value => 1%>
+  </p>
+  <hr>
+  <h4>Item in order</h4>
+  <table id="order_item_list" class="table">
+    <tr>
+      <th>Barcode</th><th>Item name</th><th>Color</th><th>Price</th><th>Qty</th>
+      <th>Subtotal</th><th></th>
+    </tr>
+    <%= f.fields_for :orderitems do |orderitem_builder| %>
+      <tr>
+        <td>
+          <%= orderitem_builder.text_field :barcode %>
+        </td>
+        <td class="name"></td>
+        <td class="color"></td>
+        <td>
+          <%= orderitem_builder.text_field :price %>
+        </td>
+        <td>
+          <%= orderitem_builder.text_field :qty %>
+        </td>
+        <td class="subTotal"></td>
+        <td><%= link_to "Remove", "#" %></td>
+      </tr>
+    <% end %>
+  </table>
+  <hr>
+  <p>
+    <%= f.label :discount %>
+    <%= f.text_field :discount %>
+  </p>
+  <p>
+    <%= f.label :total %>
+    <td id="totalAmount"></td>
+  </p>
+  <p>
+    <%= f.label :cash_received %>
+    <%= f.text_field :cash_received %>
+  </p>
+  <p>
+    <%= f.label :change %>
+    <%= f.text_field :change, value: 0 %>
+  </p>
+  <p>
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+  </p>
+  <p>
+    <%= f.submit "Confirm and Next", class:"btn btn-primary"%>
+    <%= link_to "Cancel", new_order_path, class: "btn btn-warning"%>
+  </p>
+<% end %>
+</div>

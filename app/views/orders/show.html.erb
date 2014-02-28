@@ -1,2 +1,29 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="col-xs-12 col-md-8">
+<h1>Order detail</h1>
+<p>
+Order number:<%= @order.order_id %><br/>
+Customer:<%= @order.customer_id %><br/>
+Date:<%= @order.updated_at %>
+</p>
+Detail
+<table class="table">
+<tr>
+<th>Barcode</th>
+<th>Item ID</th>
+<th>Price</th>
+<th>Qty</th>
+</tr>
+<% for item in @order.orderitems %>
+<tr>
+  <td>><%= item.barcode %></td>
+  <td>><%= item.item_id %></td>
+  <td>><%= item.price %></td>
+  <td>><%= item.qty %></td>
+</tr>
+<% end %>
+<tr>
+<td>Order comment</td>
+<td id="orderComment"><%= @order.comment %></td>
+</tr>
+</table>
+</div>

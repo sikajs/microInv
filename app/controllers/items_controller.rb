@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    # hasn't deal with initial stock fieldcd 
+    # hasn't deal with initial stock field
     if @item.save
       flash[:success] = "Item sucessfully added!"
       redirect_to @item
@@ -49,9 +49,20 @@ class ItemsController < ApplicationController
   def deactivate
     @item = Item.find(params[:item_id])
     if @item.update_attribute(:active, FALSE)
-      flash[:success] = "Item deactivated!"
+      flash[:success] = "Item 	deactivated!"
       redirect_to @item
     end
+  end
+  
+  def getByBarcode
+    @item = Item.find_by barcode: params[:barcode]
+    respond_to do |format|
+      if @item.blank?
+      	format.json { render json: 'error' }
+      else
+        format.json { render json: @item }
+      end
+    end  
   end
   
   private

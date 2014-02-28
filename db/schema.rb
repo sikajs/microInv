@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221054321) do
+ActiveRecord::Schema.define(version: 20140225073125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20140221054321) do
 
   create_table "orders", primary_key: "order_id", force: true do |t|
     t.integer  "customer_id",   limit: 8
-    t.datetime "update_time",               default: "transaction_timestamp()"
+    t.datetime "updated_at",                default: "transaction_timestamp()"
     t.boolean  "cancelled",                 default: false,                     null: false
     t.datetime "cancel_time"
     t.decimal  "discount",                  default: 0.0
