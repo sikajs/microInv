@@ -1,12 +1,15 @@
-class OrdersController < ApplicationController
+class OrdersController < ApplicationController  
+  before_action :check_items, only: [:create]
+  
   def new
     @order = Order.new
-    3.times { @order.orderitems.build }
+    @orderitems = @order.orderitems.build
+    #3.times { @order.orderitems.build }
   end
 
   def create
     @order = Order.new(order_params)
-    @order.orderitems.build
+    @orderitems = @order.orderitems.build(orderitems_params)
     if @order.save
       flash[:success] = "Order confirmed"
       redirect_to 'new'
@@ -34,5 +37,17 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:customer_id, :discount, :cash_received, 
       	                            :change, :comment)
+    end
+    
+    def check_items
+      params[:order][:orderitems_attributes].each do |item, attr|
+        if attr['item_id'] == ""
+          params[:order].delete(item)
+        end
+      end
+    end
+    
+    def orderitems_params   
+      params[:order].require(:orderitems_attributes).permit!
     end
 end

@@ -4,9 +4,9 @@ class Order < ActiveRecord::Base
   validates :cash_received, presence: true
   validates :change, presence: true
   
-  belongs_to :customer
+  belongs_to :customer, inverse_of: :orders 	
   has_many :orderitems, :dependent => :destroy
   has_many :items, :through => :orderitems
-  accepts_nested_attributes_for :orderitems, :reject_if => lambda { |a| a[:barcode].blank? }
-  
+  accepts_nested_attributes_for :orderitems,
+    :reject_if => lambda { |a| a[:barcode].blank? }
 end

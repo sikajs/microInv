@@ -58,9 +58,10 @@ class ItemsController < ApplicationController
     @item = Item.find_by barcode: params[:barcode]
     respond_to do |format|
       if @item.blank?
-      	format.json { render json: 'error' }
+      	data = '{"error": "Item not found"}'
+      	format.json { render :json => data }
       else
-        format.json { render json: @item }
+        format.json { render :json => @item }
       end
     end  
   end

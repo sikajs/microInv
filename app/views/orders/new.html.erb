@@ -7,29 +7,34 @@
     Customer No.: <%= f.text_field :customer_id, :value => 1%>
   </p>
   <hr>
-  <h4>Item in order</h4>
+  <h4>Item in order ~ <span id="iNum">0</span></h4>
   <table id="order_item_list" class="table">
-    <tr>
-      <th>Barcode</th><th>Item name</th><th>Color</th><th>Price</th><th>Qty</th>
-      <th>Subtotal</th><th></th>
-    </tr>
-    <%= f.fields_for :orderitems do |orderitem_builder| %>
+    <thead>
       <tr>
+        <td>Barcode</td><td>Item name</td><td>Color</td><td>Price</td><td>Qty</td>
+        <td>Subtotal</td><td></td>
+      </tr>
+    </thead>
+    <tbody>
+    <%= f.fields_for :orderitems, @orderitems do |orderitem_fields| %>
+      <tr class="eachProduct">
         <td>
-          <%= orderitem_builder.text_field :barcode %>
+          <%= orderitem_fields.text_field :barcode %>
+          <%= orderitem_fields.hidden_field :item_id %>
         </td>
         <td class="name"></td>
         <td class="color"></td>
         <td>
-          <%= orderitem_builder.text_field :price %>
+          <%= orderitem_fields.text_field :price %>
         </td>
         <td>
-          <%= orderitem_builder.text_field :qty %>
+          <%= orderitem_fields.text_field :qty %>
         </td>
         <td class="subTotal"></td>
         <td><%= link_to "Remove", "#" %></td>
       </tr>
     <% end %>
+    </tbody>
   </table>
   <hr>
   <p>
@@ -38,7 +43,7 @@
   </p>
   <p>
     <%= f.label :total %>
-    <td id="totalAmount"></td>
+    <span class="totalAmount">0</span>
   </p>
   <p>
     <%= f.label :cash_received %>
