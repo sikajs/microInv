@@ -1,0 +1,17 @@
+<%= f.fields_for :orderitems do |orderitem_builder| %>
+  <tr class="eachProduct">
+    <td>
+      <%= orderitem_builder.text_field :barcode %>
+    </td>
+    <td class="name"></td>
+    <td class="color"></td>
+    <td>
+      <%= orderitem_builder.text_field :price %>
+    </td>
+    <td>
+      <%= orderitem_builder.text_field :qty %>
+    </td>
+    <td class="subTotal"></td>
+    <td><%= link_to "Remove", "#" %></td>
+  </tr>
+<% end %>

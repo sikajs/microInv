@@ -9,10 +9,13 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @orderitems = @order.orderitems.build(orderitems_params)
     if @order.save
-      flash[:success] = "Order confirmed"
-      redirect_to 'new'
+      params[:order][:orderitems_attributes].each do |item, attr|
+        #binding.pry
+        Orderitem.create(order_id: @order.id, item_id: attr[:item_id].to_i, price: attr[:price])
+      end
+      #flash[:success] = "Order confirmed"
+      #redirect_to 'new'
     else
       render 'new'
     end

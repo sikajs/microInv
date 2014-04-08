@@ -1,0 +1,17 @@
+
+  <tr class="eachProduct">
+    <td>
+      <%= f.text_field :barcode %>
+    </td>
+    <td class="name"></td>
+    <td class="color"></td>
+    <td>
+      <%= f.text_field :price %>
+    </td>
+    <td>
+      <%= f.text_field :qty %>
+    </td>
+    <td class="subTotal"></td>
+    <td><%= link_to "Remove", "#" %></td>
+  </tr>
+
