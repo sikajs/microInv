@@ -1,2 +1,26 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<div class="col-xs-12 col-md-8">
+<h1>Order list</h1>
+<p>
+Total <%= pluralize @orders.count, "order" %></p>  
+  <div class="table-responsive">
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails%>
+    <table class="table">
+      <tr>
+        <th><%= link_to sortable "order_id", "ID" %></th>
+        <th><%= link_to sortable "discount", "Discount" %></th>
+        <th><%= "Comment" %></th>
+        <th><%= link_to sortable "updated_at", "Order time" %></th>
+      </tr>
+      <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.order_id, order_path(order) %></td>
+        <td><%= order.discount %></td>
+        <td><%= order.comment %></td>
+        <td><%= order.updated_at %></td>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
+  </div>
+</div>

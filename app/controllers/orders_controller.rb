@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController  
-  before_action :check_items, only: [:create]
   
   def new
     @order = Order.new
@@ -10,12 +9,24 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
+      
       params[:order][:orderitems_attributes].each do |item, attr|
-        #binding.pry
-        Orderitem.create(order_id: @order.id, item_id: attr[:item_id].to_i, price: attr[:price])
+        if attr[:item_id].to_i != 0
+          #binding.pry
+          Orderitem.create(order_id: @order.id, 
+                           item_id: attr[:item_id].to_i, 
+                           barcode: attr[:barcode],
+                           price: attr[:price],
+                           qty: attr[:qty]
+                           #curr_cost: attr[:unit_cost],
+                           #margin: (attr[:price].to_i-attr[:unit_cost].to_i)
+                          )
+        end
       end
-      #flash[:success] = "Order confirmed"
-      #redirect_to 'new'
+      #also need to modify the stock of item(s)
+      flash[:success] = "Order confirmed"
+      
+      redirect_to @order
     else
       render 'new'
     end
@@ -26,6 +37,7 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
   end
 
   def edit
@@ -40,14 +52,6 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:customer_id, :discount, :cash_received, 
       	                            :change, :comment)
-    end
-    
-    def check_items
-      params[:order][:orderitems_attributes].each do |item, attr|
-        if attr['item_id'] == ""
-          params[:order].delete(item)
-        end
-      end
     end
     
     def orderitems_params   

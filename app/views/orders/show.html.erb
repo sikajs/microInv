@@ -12,18 +12,24 @@ Detail
 <th>Item ID</th>
 <th>Price</th>
 <th>Qty</th>
+<th>Amount</th>
 </tr>
 <% for item in @order.orderitems %>
 <tr>
-  <td>><%= item.barcode %></td>
-  <td>><%= item.item_id %></td>
-  <td>><%= item.price %></td>
-  <td>><%= item.qty %></td>
+  <td><%= item.barcode %></td>
+  <td><%= item.item_id %></td>
+  <td><%= item.price %></td>
+  <td><%= item.qty %></td>
+  <td><%= item.price.to_i * item.qty.to_i %></td>
 </tr>
 <% end %>
+<tr><td colspan="4">Discount</td><td><%= @order.discount %></td></tr>
+<tr><td colspan="4">Cash Received</td><td><%= @order.cash_received %></td></tr>
+<tr><td colspan="4">Change</td><td><%= @order.change %></td></tr>
 <tr>
 <td>Order comment</td>
-<td id="orderComment"><%= @order.comment %></td>
+<td id="orderComment" colspan="4"><%= @order.comment %></td>
 </tr>
 </table>
+<%= link_to 'Back to list', orders_path %>
 </div>

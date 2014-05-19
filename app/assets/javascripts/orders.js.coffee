@@ -3,14 +3,17 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 # space between jQuery and () is necessary 
+# We cannot use normal jquery document ready function because of Turbolinks gem, see the guide for detail
+
 $(document).ready ->
+# $(document).on "page:change", ->
   iNum = 0
   $(document).on("keydown", "input[name*='barcode']", (e) ->
     if e.which == 13
       code = $(this).val()
       #need to check barcode existed in list or not, if existed then only add qty
       #attr selector didn't work
-      barcodeExist(code)
+
       tNode = $(this).parents('tr.eachProduct')
       $.ajax(
         url: '../items/getByBarcode',
@@ -47,20 +50,30 @@ $(document).ready ->
       event.preventDefault()
   )
   
-  # calculate the change
+  # calculate everything when qty keydown event
+  
+  
+  # calculate the change while entered the cash received
   $('#order_cash_received').keydown( (event)->
     if event.which == 13
-      change = Number($(this).val()-$('span.totalAmount').text());
-      $('#order_change').val(change)
+      calculateChange()
       event.preventDefault()
   )
   
-  # when click, remove the product
-  $('tr.eachProduct').find("a:contains('Remove')").click( (event)->
-    $(this).closest('tr.eachProduct').remove()
-    calculateTotal()
-    updateItemNum(-1)    
-    event.preventDefault()
+  # function for calculating the change
+  calculateChange = ->
+    change = Number($('#order_cash_received').val()-$('span.totalAmount').text())
+    $('#order_change').val(change)
+  
+  # Remove the specified item from the cart
+  $(document).on("click", "a[data-remove]", "", (e) ->
+    # make sure the function only remove the line with existed item
+    if $(this).parents('tr.eachProduct').find("input[name*='barcode']").val() != ""
+      $(this).parents('tr.eachProduct').remove()
+      calculateTotal()
+      calculateChange()
+      updateItemNum(-1)
+    e.preventDefault()
   )
   
   # calculate the total amount in the order and update context
@@ -71,14 +84,6 @@ $(document).ready ->
     )
     $('span.totalAmount').text(untaxTotal)
   
-  # check if barcode existed
-  barcodeExist = (code)->
-    $('.eachProduct').find("input[name*='barcode']").each( ()->
-      #if $(this).val() == code and is new product 
-      #  alert $(this).parents('tr.eachProduct').find("input[name*='qty']")
-      #else
-      #	alert "no"
-    )
     
   # add new product input to wait for new item
   addNewProduct = ()->

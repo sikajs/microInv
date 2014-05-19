@@ -31,7 +31,7 @@
           <%= orderitem_fields.text_field :qty %>
         </td>
         <td class="subTotal"></td>
-        <td><%= link_to "Remove", "#" %></td>
+        <td><%= link_to "Remove", "#", :'data-remove' => 'remove' %></td>
       </tr>
     <% end %>
     </tbody>
