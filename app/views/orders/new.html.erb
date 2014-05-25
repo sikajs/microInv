@@ -17,7 +17,7 @@
     </thead>
     <tbody>
     <%= f.fields_for :orderitems, @orderitems do |orderitem_fields| %>
-      <tr class="eachProduct">
+      <tr class="eachProduct newEntry">
         <td>
           <%= orderitem_fields.text_field :barcode %>
           <%= orderitem_fields.hidden_field :item_id %>
