@@ -181,14 +181,12 @@ $(document).ready ->
     $("input[name*='qty']").each( () ->
       if !$(this).parents('tr.eachProduct').hasClass("newEntry")
         itemNum += parseInt( $(this).val(), 10 )
-        alert $(this).val() + "/" + itemNum
     )
     iNum = itemNum
     $('span#iNum').html(itemNum)
     
   # update the number of item(s) in order  
   updateItemNum = (number) ->
-    #alert "update called"
     iNum += number
     if iNum < 0
       iNum = 0
