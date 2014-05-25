@@ -9,7 +9,7 @@ Detail
 <table class="table">
 <tr>
 <th>Barcode</th>
-<th>Item ID</th>
+<th>Item name</th>
 <th>Price</th>
 <th>Qty</th>
 <th>Amount</th>
@@ -17,10 +17,10 @@ Detail
 <% for item in @order.orderitems %>
 <tr>
   <td><%= item.barcode %></td>
-  <td><%= item.item_id %></td>
+  <td><%= item.get_item_name %></td>
   <td><%= item.price %></td>
   <td><%= item.qty %></td>
-  <td><%= item.price.to_i * item.qty.to_i %></td>
+  <td><%= item.get_subtotal %></td>
 </tr>
 <% end %>
 <tr><td colspan="4">Discount</td><td><%= @order.discount %></td></tr>

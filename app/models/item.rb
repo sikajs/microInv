@@ -12,4 +12,18 @@ class Item < ActiveRecord::Base
   belongs_to :supplier
   has_many :orderitems
   has_many :orders, :through => :orderitems
+  
+  def get_current_stock
+    self.stock
+  end
+  
+  def deduct_stock(qty)
+    self.stock = self.stock - qty
+    self.save
+  end
+  
+  def restock(qty)
+    self.stock = self.stock + qty
+    self.save
+  end
 end
