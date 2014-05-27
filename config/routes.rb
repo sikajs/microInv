@@ -6,7 +6,7 @@ SmeInv::Application.routes.draw do
 
     patch 'activate'
     patch 'deactivate'
-    patch 'restock'
+    get 'restock'
     patch 'restock_update'
   end
   resources :suppliers

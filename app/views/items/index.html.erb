@@ -27,7 +27,7 @@ Total <%= pluralize @items.count, "item" %>
         <td><%= item.stock %></td>
         <td><%= item.active %></td>
         <td>
-          <%= link_to "Restock", item_restock_path(item), method: :patch, class: "btn btn-info"%>
+          <%= link_to "Restock", item_restock_path(item), class: "btn btn-info"%>
           <%= link_to "Edit", edit_item_path(item), class: "btn btn-warning" %>
           <% if item.active %>
           <%=  link_to "Deactivate", item_deactivate_path(item), method: :patch, class: "btn btn-danger", data: { confirm: "Sure?" } %>
