@@ -66,6 +66,7 @@ class ItemsController < ApplicationController
   
   def restock_update
     @item = Item.find(params[:item_id])
+    # better to secure the parameters later
     if params[:new_arrival_stock].to_i > 0
       #update the stock with the entered data
       new_stock = @item.stock + params[:new_arrival_stock].to_i
@@ -73,6 +74,7 @@ class ItemsController < ApplicationController
       @item.unit_cost = new_cost
       @item.stock = new_stock
       @item.save!
+      # need to update the restock history as well
       flash[:success] = "Item restocked."
       redirect_to @item
     else

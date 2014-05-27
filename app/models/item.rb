@@ -12,6 +12,8 @@ class Item < ActiveRecord::Base
   belongs_to :supplier
   has_many :orderitems
   has_many :orders, :through => :orderitems
+  has_many :restockhistorys, dependent: :destroy
+  has_many :adjusthistorys, dependent: :destroy
   
   def get_current_stock
     self.stock
