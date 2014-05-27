@@ -22,7 +22,7 @@ class Item < ActiveRecord::Base
     self.save
   end
   
-  def restock(qty)
+  def add_stock(qty)
     self.stock = self.stock + qty
     self.save
   end

@@ -21,7 +21,12 @@ class ItemsController < ApplicationController
   def index 
     # this will break the test if using :per_page smaller than 30 in here
     # but put :per_page variable in the model won't
-    @items = Item.paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
+    # trying to make search via texfield input, but haven't succeeded
+    if params[:item_search]
+      @items = Item.where('barcode LIKE ?', params[:item_search]).paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
+    else
+      @items = Item.paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
+    end
   end
   
   def edit
@@ -52,6 +57,29 @@ class ItemsController < ApplicationController
       flash[:success] = "Item 	deactivated!"
       redirect_to @item
     end
+  end
+  
+  def restock
+    @item = Item.find(params[:item_id])
+    #render the form for enter the new cost and qty
+  end
+  
+  def restock_update
+    @item = Item.find(params[:item_id])
+    if params[:new_arrival_stock].to_i > 0
+      #update the stock with the entered data
+      new_stock = @item.stock + params[:new_arrival_stock].to_i
+      new_cost = (@item.unit_cost * @item.stock + params[:new_arrival_cost].to_f * params[:new_arrival_stock].to_i) / new_stock
+      @item.unit_cost = new_cost
+      @item.stock = new_stock
+      @item.save!
+      flash[:success] = "Item restocked."
+      redirect_to @item
+    else
+      flash[:error] = "Wrong new arrival stock number!"
+      render 'restock'
+    end
+    #binding.pry
   end
   
   def getByBarcode
