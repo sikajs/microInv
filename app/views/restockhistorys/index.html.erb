@@ -1,0 +1,34 @@
+<div class="col-xs-12 col-md-8">
+<h1>Restock history</h1>
+<p>
+Total <%= pluralize @restockhistorys.count, "record" %></p>  
+  <div class="table-responsive">
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails%>
+    <table class="table">
+      <tr>
+        <th><%= "User ID" %></th>
+        <th><%= link_to sortable "item_id", "Item ID" %></th>
+        <th><%= "Previous cost" %></th>
+        <th><%= "New cost" %></th>
+        <th><%= "Previous stock" %></th>
+        <th><%= "New arrival qty" %></th>
+        <th><%= "Supplier ID" %></th>
+        <th><%= link_to sortable "restock_time", "Restock time" %></th>
+      </tr>
+      <% @restockhistorys.each do |restockhistory| %>
+      <tr>
+        <td><%= restockhistory.uid %></td>
+        <td><%= restockhistory.item_id %></td>
+        <td><%= restockhistory.previous_cost %></td>
+        <td><%= restockhistory.new_cost %></td>
+        <td><%= restockhistory.previous_stock %></td>
+        <td><%= restockhistory.new_arrival %></td>
+        <td><%= restockhistory.supplier_id %></td>
+        <td><%= restockhistory.restock_time %></td>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
+  </div>
+</div>
