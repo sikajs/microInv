@@ -1,0 +1,30 @@
+<div class="col-xs-12 col-md-8">
+<h1>Adjust history</h1>
+<p>
+Total <%= pluralize @adjusthistorys.count, "record" %></p>  
+  <div class="table-responsive">
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails%>
+    <table class="table">
+      <tr>
+        <th><%= "User ID" %></th>
+        <th><%= link_to sortable "item_id", "Item ID" %></th>
+        <th><%= "Previous stock" %></th>
+        <th><%= "New stock" %></th>
+        <th><%= "Reason" %></th>
+        <th><%= link_to sortable "adjust_time", "Adjust time" %></th>
+      </tr>
+      <% @adjusthistorys.each do |adjusthistory| %>
+      <tr>
+        <td><%= adjusthistory.uid %></td>
+        <td><%= adjusthistory.item_id %></td>
+        <td><%= adjusthistory.previous_stock %></td>
+        <td><%= adjusthistory.new_stock %></td>
+        <td><%= adjusthistory.reason %></td>
+        <td><%= adjusthistory.adjust_time %></td>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
+  </div>
+</div>

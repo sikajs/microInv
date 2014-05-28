@@ -13,6 +13,7 @@ SmeInv::Application.routes.draw do
   resources :customers
   resources :orders 
   resources :restockhistorys
+  resources :adjusthistorys
   
   root "orders#new"
 
