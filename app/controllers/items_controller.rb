@@ -71,10 +71,14 @@ class ItemsController < ApplicationController
       #update the stock with the entered data
       new_stock = @item.stock + params[:new_arrival_stock].to_i
       new_cost = (@item.unit_cost * @item.stock + params[:new_arrival_cost].to_f * params[:new_arrival_stock].to_i) / new_stock
+      # need to update the restock history as well
+      Restockhistory.create!(uid: 1, item_id: @item.item_id, previous_stock: @item.stock, previous_cost: @item.unit_cost,
+                             new_arrival: params[:new_arrival_stock].to_i, new_cost: params[:new_arrival_cost].to_f, 
+                             supplier_id: @item.supplier_id)
+      # put the averaged cost and new total stock data into DB
       @item.unit_cost = new_cost
       @item.stock = new_stock
-      @item.save!
-      # need to update the restock history as well
+      @item.save! 
       flash[:success] = "Item restocked."
       redirect_to @item
     else
