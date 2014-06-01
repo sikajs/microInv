@@ -60,8 +60,8 @@ class ItemsController < ApplicationController
   end
   
   def restock
-    @item = Item.find(params[:item_id])
     #render the form for enter the new cost and qty
+    @item = Item.find(params[:item_id])
   end
   
   def restock_update
@@ -82,10 +82,31 @@ class ItemsController < ApplicationController
       flash[:success] = "Item restocked."
       redirect_to @item
     else
-      flash[:error] = "Wrong new arrival stock number!"
+      flash[:danger] = "Wrong new arrival stock number!"
       render 'restock'
     end
     #binding.pry
+  end
+  
+  def adjust
+    @item = Item.find(params[:item_id])
+  end
+  
+  def adjust_update
+    @item = Item.find(params[:item_id])
+    # should use build for Adjusthistory?
+    new_qty = @item.stock + params[:qty_to_change].to_i
+    if new_qty >= 0
+      Adjusthistory.create!(uid: 1, item_id: @item.item_id, previous_stock: @item.stock, new_stock: new_qty, 
+                            reason: params[:reason])
+      @item.stock = new_qty
+      @item.save! 
+      flash[:success] = "Item adjusted."
+      redirect_to @item
+    else
+      flash[:danger] = "Stock after adjustion will be negative!"
+      render 'adjust'
+    end
   end
   
   def getByBarcode

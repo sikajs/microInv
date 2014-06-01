@@ -8,12 +8,12 @@ SmeInv::Application.routes.draw do
     patch 'deactivate'
     get 'restock'
     patch 'restock_update'
+    get 'adjust'
+    patch 'adjust_update'
   end
-  resources :suppliers
-  resources :customers
-  resources :orders 
-  resources :restockhistorys
-  resources :adjusthistorys
+  resources :suppliers, :customers, :orders
+  resources :restockhistorys, only: [:index]
+  resources :adjusthistorys, only: [:index]
   
   root "orders#new"
 
