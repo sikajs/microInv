@@ -1,0 +1,29 @@
+<div class="col-xs-12 col-md-8">
+<h1>Return order detail</h1>
+<p>
+CRO number:<%= @cro.cro_id %><br/>
+Customer:<%= @cro.customer_id %><br/>
+Date:<%= @cro.updated_at %>
+</p>
+Detail
+<table class="table">
+<tr>
+<th>Barcode</th>
+<th>Item name</th>
+<th>Price</th>
+<th>Qty</th>
+<th>Amount</th>
+</tr>
+<% for item in @cro.croitems %>
+<tr>
+  <td><%= item.barcode %></td>
+  <td><%= item.get_item_name %></td>
+  <td><%= item.price %></td>
+  <td><%= item.qty %></td>
+  <td><%= item.get_subtotal %></td>
+</tr>
+<% end %>
+<tr><td colspan="4">Original discount</td><td><%= @cro.orig_discount %></td></tr>
+</table>
+<%= link_to 'Back to list', cros_path %>
+</div>

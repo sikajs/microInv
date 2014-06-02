@@ -11,4 +11,8 @@ class CrosController < ApplicationController
   def index
     @cros = Cro.paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
   end
+  
+  def show
+    @cro = Cro.find(params[:id])
+  end
 end
