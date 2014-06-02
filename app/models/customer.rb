@@ -3,4 +3,5 @@ class Customer < ActiveRecord::Base
   
   validates :cust_name, presence: true
   has_many :orders, inverse_of: :customer
+  has_many :cros, inverse_of: :customer
 end

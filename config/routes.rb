@@ -14,6 +14,7 @@ SmeInv::Application.routes.draw do
   resources :suppliers, :customers, :orders
   resources :restockhistorys, only: [:index]
   resources :adjusthistorys, only: [:index]
+  resources :cros, only: [:index, :new, :create, :show]
   
   root "orders#new"
 

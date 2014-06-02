@@ -1,0 +1,2 @@
+module CrosHelper
+end

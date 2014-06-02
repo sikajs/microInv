@@ -1,0 +1,26 @@
+<div class="col-xs-12 col-md-8">
+<h1>Return order list</h1>
+<p>
+Total <%= pluralize @cros.count, "cro" %></p>  
+  <div class="table-responsive">
+  <%= will_paginate @cros, renderer: BootstrapPagination::Rails%>
+    <table class="table">
+      <tr>
+        <th><%= link_to sortable "cro_id", "ID" %></th>
+        <th><%= link_to sortable "orig_discount", "Original discount" %></th>
+        <th><%= link_to sortable "return_total", "Total amount" %></th>
+        <th><%= link_to sortable "updated_at", "Return time" %></th>
+      </tr>
+      <% @cros.each do |cro| %>
+      <tr>
+        <td><%= link_to cro.cro_id, cro_path(cro) %></td>
+        <td><%= cro.orig_discount %></td>
+        <td><%= cro.return_total %></td>
+        <td><%= cro.updated_at %></td>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
+  </div>
+</div>
