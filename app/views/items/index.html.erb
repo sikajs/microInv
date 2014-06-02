@@ -3,16 +3,27 @@
 <p>
 <%= link_to "Add new item", new_item_path, class: "btn btn-info" %>
 Total <%= pluralize @items.count, "item" %>
-<span>
-<input type= "text" id="item_search" placeholder="Enter barcode to search"/></span>
 </p>  
   <div class="table-responsive">
   <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
     <table class="table">
+      <%= form_tag items_path, :method => 'get' do %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+      <tr>
+        <td></td>
+		<td><%= text_field_tag :name_search, nil, placeholder: "Enter item name to search" %></td>
+        <td></td>
+        <td><%= text_field_tag :color_search, nil, placeholder: "Enter color to search" %></td>
+        <td><%= text_field_tag :bc_search, nil, placeholder: "Enter barcode to search" %></td>
+        <td><%= submit_tag "Search", :name => nil %></td>
+      </tr>
+      <% end %>
       <tr>
         <th><%= link_to sortable "item_id", "ID" %></th>
         <th><%= link_to sortable "item_name", "Item name" %></th>
         <th><%= link_to sortable "item_name_en", "English name" %></th>
+        <th><%= link_to sortable "color", "Color" %></th>
         <th><%= link_to sortable "barcode", "Barcode" %></th>
         <th><%= link_to sortable "stock", "Stock" %></th>
         <th>Status</th>
@@ -23,6 +34,7 @@ Total <%= pluralize @items.count, "item" %>
         <td><%= item.item_id %></td>
         <td><%= item.item_name %></td>
         <td><%= item.item_name_en %></td>
+        <td><%= item.color %></td>
         <td><%= link_to item.barcode, item_path(item) %></td>
         <td><%= item.stock %></td>
         <td><%= item.active %></td>

@@ -28,4 +28,12 @@ class Item < ActiveRecord::Base
     self.stock = self.stock + qty
     self.save
   end
+  
+  def self.search(search)
+    if search
+      where('barcode like ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
 end

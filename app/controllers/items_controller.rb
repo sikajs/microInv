@@ -22,11 +22,8 @@ class ItemsController < ApplicationController
     # this will break the test if using :per_page smaller than 30 in here
     # but put :per_page variable in the model won't
     # trying to make search via texfield input, but haven't succeeded
-    if params[:item_search]
-      @items = Item.where('barcode LIKE ?', params[:item_search]).paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
-    else
-      @items = Item.paginate(:page => params[:page]).order(sort_column + " " + sort_direction)
-    end
+      #binding.pry
+      @items = Item.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page])
   end
   
   def edit
