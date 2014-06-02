@@ -21,9 +21,10 @@ class ItemsController < ApplicationController
   def index 
     # this will break the test if using :per_page smaller than 30 in here
     # but put :per_page variable in the model won't
-    # trying to make search via texfield input, but haven't succeeded
-      #binding.pry
-      @items = Item.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+    # if want to search via barcode, need to rewrite the order part because there is interference between Ransack and orders.js
+    @q = Item.search(params[:q])
+    @items = @q.result(distinct: true).order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+    #@items = Item.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page])
   end
   
   def edit

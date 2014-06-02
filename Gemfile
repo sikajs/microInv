@@ -62,6 +62,10 @@ group :development, :test do
   gem 'rspec-rails'
   #gem 'guard-rspec'
 end
+
+# Use ransack to deal with some search forms
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

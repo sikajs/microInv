@@ -5,18 +5,21 @@
 Total <%= pluralize @items.count, "item" %>
 </p>  
   <div class="table-responsive">
-  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
+    <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
     <table class="table">
-      <%= form_tag items_path, :method => 'get' do %>
+      <thead>
+      <%= search_form_for @q, :url => items_path do |f| %>
       <%= hidden_field_tag :direction, params[:direction] %>
       <%= hidden_field_tag :sort, params[:sort] %>
       <tr>
         <td></td>
-		<td><%= text_field_tag :name_search, nil, placeholder: "Enter item name to search" %></td>
+		<td><%= f.search_field :item_name_cont, placeholder: "Search via item name" %></td>
+        <td><%= f.search_field :item_name_en_cont, placeholder: "Search via English name" %></td>
+        <td><%= f.search_field :color_cont, placeholder: "Search via color" %></td>
         <td></td>
-        <td><%= text_field_tag :color_search, nil, placeholder: "Enter color to search" %></td>
-        <td><%= text_field_tag :bc_search, nil, placeholder: "Enter barcode to search" %></td>
-        <td><%= submit_tag "Search", :name => nil %></td>
+        <td></td>
+        <td></td>
+        <td><%= f.submit %></td>
       </tr>
       <% end %>
       <tr>
@@ -29,6 +32,8 @@ Total <%= pluralize @items.count, "item" %>
         <th>Status</th>
         <th>Action</th>
       </tr>
+      </thead>
+      <tbody>
       <% @items.each do |item| %>
       <tr>
         <td><%= item.item_id %></td>
@@ -40,7 +45,7 @@ Total <%= pluralize @items.count, "item" %>
         <td><%= item.active %></td>
         <td>
           <%= link_to "Restock", item_restock_path(item), class: "btn btn-info"%>
-          <%= link_to "Adjust", item_adjust_path(item), class: "btn btn-info"%><br/>
+          <%= link_to "Adjust", item_adjust_path(item), class: "btn btn-info"%>
           <%= link_to "Edit", edit_item_path(item), class: "btn btn-warning" %>
           <% if item.active %>
           <%=  link_to "Deactivate", item_deactivate_path(item), method: :patch, class: "btn btn-danger", data: { confirm: "Sure?" } %>
@@ -50,7 +55,8 @@ Total <%= pluralize @items.count, "item" %>
         </td>
       </tr>
       <% end %>
+      </tbody>
     </table>
-  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
+    <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
   </div>
 </div>

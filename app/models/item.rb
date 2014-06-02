@@ -29,7 +29,7 @@ class Item < ActiveRecord::Base
     self.save
   end
   
-  def self.search(search)
+  def self.hahasearch(search)
     if search
       where('barcode like ?', "%#{search}%")
     else
