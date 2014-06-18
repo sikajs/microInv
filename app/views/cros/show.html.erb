@@ -23,6 +23,7 @@ Detail
   <td><%= item.get_subtotal %></td>
 </tr>
 <% end %>
+<tr><td colspan="4">Total returned amount</td><td><%= @cro.return_total %></td></tr>
 <tr><td colspan="4">Original discount</td><td><%= @cro.orig_discount %></td></tr>
 </table>
 <%= link_to 'Back to list', cros_path %>
