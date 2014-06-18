@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.1'
+ruby '2.1.2'
 #ruby-gemset=smeRails
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -45,7 +45,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'awesome_print'
   gem 'pry'
-  gem 'pry-debugger'
+  #gem 'pry-debugger'
+  gem 'pry-byebug'
 end
  
 group :test do
