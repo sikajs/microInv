@@ -1,2 +1,53 @@
-<h1>Cros#new</h1>
-<p>Find me in app/views/cros/new.html.erb</p>
+<div class="col-xs-12 col-md-8">
+<h1>New return order (CRO)</h1>
+<%= form_for(@cro) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <p>
+    Return order date: <%= Date.today %><br/>
+    Customer No.: <%= f.text_field :customer_id, :value => 1%>
+  </p>
+  <hr>
+  <h4>Item in cro ~ <span id="iNum">0</span></h4>
+  <table id="cro_item_list" class="table">
+    <thead>
+      <tr>
+        <td>Barcode</td><td>Item name</td><td>Color</td><td>Price</td><td>Qty</td>
+        <td>Subtotal</td><td></td>
+      </tr>
+    </thead>
+    <tbody>
+    <%= f.fields_for :croitems, @croitems do |croitem_fields| %>
+      <tr class="eachProduct newEntry">
+        <td>
+          <%= croitem_fields.text_field :barcode %>
+          <%= croitem_fields.hidden_field :item_id %>
+        </td>
+        <td class="name"></td>
+        <td class="color"></td>
+        <td>
+          <%= croitem_fields.text_field :price %>
+        </td>
+        <td>
+          <%= croitem_fields.text_field :qty %>
+        </td>
+        <td class="subTotal"></td>
+        <td><%= link_to "Remove", "#", :'data-remove' => 'remove' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <p>
+    <%= f.label :return_total %>
+    <span class="totalAmount"><%= f.text_field :return_total %></span>
+  </p>
+  <p>
+    <%= f.label :orig_discount %>
+    <%= f.text_field :orig_discount %>
+  </p>
+  <p>
+    <%= f.submit "Confirm and Next", class:"btn btn-primary" %>
+    <%= link_to "Cancel", new_cro_path, class: "btn btn-warning" %>
+  </p>
+<% end %>
+</div>
