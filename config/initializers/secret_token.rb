@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-SmeInv::Application.config.secret_key_base = 'f9dee855ccf5f03b94d7e7934effafc5b701937d3767e7e51434e3eccceed482cac3faf09cf25cbd23432dad6fb18bb077b6a5f094e0f39c355ccf0fa59c7f28'
+SmeInv::Application.config.secret_key_base = '7323b14e4b14cf9ee1942dd836b46793d66142970117263c04c1319498f536c81f8c302a9d07ffc717ab5116f1673e778aa628a424b2e480aec87ab8db0f8c83'

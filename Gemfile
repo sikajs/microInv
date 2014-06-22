@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.0.0'
 #ruby-gemset=smeRails
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -59,8 +59,8 @@ group :production do
 end
 
 group :development, :test do
-  gem 'rspec'
-  gem 'rspec-rails'
+  gem 'rspec-core', '2.13.1'
+  gem 'rspec-rails', '2.13.1'
   #gem 'guard-rspec'
 end
 
