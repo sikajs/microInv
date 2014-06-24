@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622084548) do
+ActiveRecord::Schema.define(version: 20140624073052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 20140622084548) do
     t.string  "sameitem", limit: 40
     t.decimal "price",               null: false
     t.string  "barcode"
+  end
+
+  create_table "cros", force: true do |t|
+    t.integer  "customer_id",   null: false
+    t.datetime "updated_at",    null: false
+    t.decimal  "return_total",  null: false
+    t.decimal  "orig_discount"
   end
 
   create_table "customers", primary_key: "customer_id", force: true do |t|
@@ -91,8 +98,8 @@ ActiveRecord::Schema.define(version: 20140622084548) do
   end
 
   create_table "order_items", id: false, force: true do |t|
-    t.integer "order_id"
-    t.integer "item_id"
+    t.integer "order_id",                           null: false
+    t.integer "item_id",                            null: false
     t.integer "qty"
     t.string  "sameitem",  limit: 40
     t.decimal "price",                default: 0.0, null: false
